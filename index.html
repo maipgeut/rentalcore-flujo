@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>RentalCore — Documentación del flujo</title>
+<style>
+:root{--ink:#0f172a;--lime:#84cc16;--lime2:#a3e635;--muted:#94a3b8}
+*{margin:0;box-sizing:border-box;font-family:'Inter',system-ui,sans-serif}
+body{background:var(--ink);color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+.wrap{max-width:760px;width:100%;text-align:center}
+.logo{display:inline-flex;align-items:center;gap:9px;font-weight:900;font-size:20px;margin-bottom:8px}
+.logo .m{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--lime),var(--lime2));display:flex;align-items:center;justify-content:center;color:var(--ink)}
+h1{font-size:30px;font-weight:900;letter-spacing:-1px;margin:14px 0 6px}
+p.sub{color:var(--muted);margin-bottom:34px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+a.card{display:block;text-decoration:none;color:#fff;background:#1e293b;border:1px solid #334155;border-radius:18px;padding:28px 24px;text-align:left;transition:.25s}
+a.card:hover{border-color:var(--lime);transform:translateY(-4px);box-shadow:0 16px 40px rgba(132,204,22,.18)}
+.ic{font-size:34px;margin-bottom:14px}
+a.card h2{font-size:19px;font-weight:800;margin-bottom:6px}
+a.card span{color:var(--muted);font-size:14px}
+.go{display:inline-block;margin-top:16px;color:var(--lime2);font-weight:800;font-size:14px}
+footer{margin-top:34px;color:#64748b;font-size:13px}
+</style></head><body><div class="wrap">
+<div class="logo"><span class="m">▸</span> RentalCore</div>
+<h1>Documentación del flujo de venta</h1>
+<p class="sub">Selecciona el documento que quieres ver.</p>
+<div class="grid">
+  <a class="card" href="manual-operacion.html"><div class="ic">📘</div><h2>Manual de operación</h2><span>Para el dueño de la empresa de arriendo: cómo llegan las solicitudes y todo el flujo paso a paso.</span><div class="go">Abrir manual →</div></a>
+  <a class="card" href="flujo-venta.html"><div class="ic">🔧</div><h2>Flujo técnico interactivo</h2><span>Recorrido del proceso con estados, endpoints y disparadores automáticos.</span><div class="go">Abrir flujo técnico →</div></a>
+</div>
+<footer>Trazabilidad completa desde la cotización hasta el pago</footer>
+</div></body></html>
