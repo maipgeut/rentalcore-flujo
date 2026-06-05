@@ -119,6 +119,40 @@ section.block{padding:54px 0}
 .pathbox.a h5{color:var(--amber)} .pathbox.b h5{color:var(--blue)}
 .pathbox p{font-size:13px;color:var(--slate)}
 
+/* ── Configuración inicial (tarjetas) ── */
+.setup-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+@media(max-width:640px){.setup-grid{grid-template-columns:1fr}}
+.setup-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 6px 22px rgba(15,23,42,.05);transition:.25s}
+.setup-card:hover{border-color:var(--lime);transform:translateY(-3px);box-shadow:0 14px 36px rgba(132,204,22,.15)}
+.setup-card .sc-h{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.setup-card .sc-i{width:46px;height:46px;border-radius:12px;background:rgba(132,204,22,.14);display:flex;align-items:center;justify-content:center;font-size:23px;flex-shrink:0}
+.setup-card .sc-n{font-size:11px;font-weight:900;color:var(--lime);letter-spacing:1px}
+.setup-card h4{font-size:16px;font-weight:800}
+.setup-card p{font-size:13.5px;color:var(--slate)}
+.setup-card .mod{display:inline-block;margin-top:10px;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--slate);background:var(--paper);border:1px solid var(--line);padding:3px 9px;border-radius:7px}
+
+/* ── Micro-animaciones dentro de los pasos ── */
+.scene{position:relative;height:78px;background:var(--paper);border:1px dashed var(--line);border-radius:12px;margin:4px 0 6px;overflow:hidden}
+.scene .label{position:absolute;left:12px;top:8px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}
+/* camión (despacho) */
+.scene .road{position:absolute;left:0;right:0;bottom:16px;height:2px;background:repeating-linear-gradient(90deg,#cbd5e1 0 12px,transparent 12px 24px)}
+.truck{position:absolute;bottom:18px;left:-44px;font-size:30px;animation:drive 3.6s linear infinite}
+@keyframes drive{0%{left:-44px}100%{left:108%}}
+.pin{position:absolute;right:7%;bottom:16px;font-size:22px;animation:bob 1.4s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+/* documento → SII (facturas) */
+.docfly{position:absolute;left:9%;top:50%;font-size:26px;animation:fly 3.6s ease-in-out infinite}
+@keyframes fly{0%{left:9%;top:50%;opacity:0}12%{opacity:1}52%{left:58%;top:50%;opacity:1}60%{left:58%;opacity:0}100%{left:9%;opacity:0}}
+.siibox{position:absolute;right:10%;top:50%;transform:translateY(-50%);background:var(--ink);color:#fff;font-weight:800;font-size:12px;letter-spacing:1px;padding:9px 14px;border-radius:9px}
+.siibox .ok{position:absolute;top:-9px;right:-9px;width:22px;height:22px;border-radius:50%;background:var(--lime);color:var(--ink);font-size:13px;font-weight:900;display:flex;align-items:center;justify-content:center;transform:scale(0);animation:pop 3.6s ease-in-out infinite}
+@keyframes pop{0%,52%{transform:scale(0)}62%,92%{transform:scale(1)}100%{transform:scale(0)}}
+/* firma (contrato) */
+.sign{position:absolute;top:28%;left:26%;font-size:26px;animation:write 2.6s ease-in-out infinite}
+@keyframes write{0%{left:24%}50%{left:60%}100%{left:24%}}
+.signline{position:absolute;left:26%;right:34%;bottom:24px;height:2px;background:var(--lime);transform-origin:left;transform:scaleX(0);animation:draw 2.6s ease-in-out infinite}
+@keyframes draw{0%{transform:scaleX(0)}50%{transform:scaleX(1)}90%{transform:scaleX(1);opacity:1}100%{transform:scaleX(1);opacity:.3}}
+@media(prefers-reduced-motion:reduce){.truck,.docfly,.siibox .ok,.sign,.signline,.pin{animation:none}}
+
 /* FAQ */
 .faq{background:var(--ink);color:#fff}
 .faq .eyebrow{color:var(--lime)}.faq .h2{color:#fff}.faq .sub{color:#94a3b8}
@@ -136,7 +170,7 @@ footer{background:var(--ink);color:#64748b;text-align:center;padding:26px 0;font
 footer .logo{justify-content:center;margin-bottom:8px;font-size:15px}
 
 @media print{
-  nav,.hero .blob,.toc,.chev,.nbtn,.src .ping,.conn .pdot{display:none!important}
+  nav,.hero .blob,.toc,.chev,.nbtn,.src .ping,.conn .pdot,.scene{display:none!important}
   .hero{padding:18px 0;background:#fff;color:#000}.hero *{color:#000!important}
   .hero h1 .hl{-webkit-text-fill-color:#3f6212;color:#3f6212!important}
   body{background:#fff}.stepc .detail,.qa .a{max-height:none!important}
@@ -174,6 +208,37 @@ footer .logo{justify-content:center;margin-bottom:8px;font-size:15px}
     <div class="toc reveal">
       <h4>Contenido del manual</h4>
       <ol id="tocList"></ol>
+    </div>
+  </div>
+</section>
+
+<!-- PUESTA EN MARCHA (configuración inicial) -->
+<section class="block" id="setup">
+  <div class="container">
+    <div class="eyebrow reveal">Puesta en marcha · una sola vez</div>
+    <h2 class="h2 reveal">Configura tu cuenta antes de empezar</h2>
+    <p class="sub reveal">Cuatro ajustes iniciales que dejas listos una vez. Sobre esa base, todo el flujo opera solo.</p>
+    <div class="setup-grid">
+      <div class="setup-card reveal">
+        <div class="sc-h"><div class="sc-i">🏢</div><div><div class="sc-n">PASO 0.1</div><h4>Datos de tu empresa</h4></div></div>
+        <p>Carga el RUT, razón social, giro, dirección y tu logo. Aparecerán automáticamente en cotizaciones, contratos y facturas.</p>
+        <span class="mod">Configuración → Empresa</span>
+      </div>
+      <div class="setup-card reveal">
+        <div class="sc-h"><div class="sc-i">🚜</div><div><div class="sc-n">PASO 0.2</div><h4>Carga tu maquinaria</h4></div></div>
+        <p>Registra tus equipos con fotos, categorías y tarifas (día / semana / mes). Marca cuáles quieres mostrar en tu catálogo público.</p>
+        <span class="mod">Equipos</span>
+      </div>
+      <div class="setup-card reveal">
+        <div class="sc-h"><div class="sc-i">👥</div><div><div class="sc-n">PASO 0.3</div><h4>Tu equipo y permisos</h4></div></div>
+        <p>Crea cuentas para vendedores, operaciones y finanzas, y define qué puede ver y hacer cada rol. La gestión de roles la hace un administrador.</p>
+        <span class="mod">Usuarios y Roles</span>
+      </div>
+      <div class="setup-card reveal">
+        <div class="sc-h"><div class="sc-i">🧾</div><div><div class="sc-n">PASO 0.4</div><h4>Facturación electrónica</h4></div></div>
+        <p>Conecta tu proveedor (NiuPOS, Haulmer…), ingresa tus credenciales y los datos del emisor, y prueba la conexión. Se configura una sola vez.</p>
+        <span class="mod">Configuración → Facturación</span>
+      </div>
     </div>
   </div>
 </section>
@@ -261,20 +326,23 @@ const STEPS = [
     haces:"Convierte la cotización (u OC) en <span class='where'>Contrato</span>: se copian ítems, montos y fechas. Actívalo y envíalo a firma; el cliente lo firma digitalmente en su portal.",
     auto:"El contrato queda enlazado a su cotización y al cliente, con su PDF disponible para ambos.",
     lock:"Ojo: no podrás emitir la factura hasta que confirmes el despacho del equipo (paso 5).",
-    tip:"Si el cliente pide más tiempo, podrá solicitar una renovación desde su portal y te llegará el aviso." },
+    tip:"Si el cliente pide más tiempo, podrá solicitar una renovación desde su portal y te llegará el aviso.",
+    anim:`<div class="scene"><span class="label">Firma digital</span><div class="sign">✍️</div><div class="signline"></div></div>` },
 
   { icon:"🚚", n:"PASO 05", t:"Despachas el equipo", mod:"Módulo: Logística / Despacho",
     pasa:"Entregas la maquinaria al cliente.",
     haces:"En <span class='where'>Logística</span> registra el acta de entrega con checklist, fotos, horómetro y condición del equipo, y márcala como <span class='where'>Completada</span>.",
     auto:"El equipo pasa a estado “arrendado” y se crea automáticamente la Guía de Despacho (en borrador).",
-    tip:"Las fotos del acta respaldan el estado de salida del equipo — clave ante cualquier reclamo posterior." },
+    tip:"Las fotos del acta respaldan el estado de salida del equipo — clave ante cualquier reclamo posterior.",
+    anim:`<div class="scene"><span class="label">Despacho del equipo</span><div class="road"></div><div class="truck">🚛</div><div class="pin">📍</div></div>` },
 
   { icon:"🧾", n:"PASO 06", t:"Facturas el arriendo", mod:"Módulo: Facturación / EDP", paths:true,
     pasa:"Cobras el arriendo emitiendo el documento tributario. Tienes dos formas según el tipo de arriendo:",
     haces:"Genera la factura por el camino que corresponda y luego presiona <span class='where'>Emitir DTE</span>: el sistema la envía al SII a través de tu proveedor (NiuPOS, Haulmer, etc.).",
     auto:"Cuando el SII acepta el documento, el cliente recibe su factura en PDF automáticamente por correo.",
     lock:"El sistema bloquea la emisión si hay un despacho sin confirmar — confírmalo primero (paso 5).",
-    tip:"Configura tu proveedor de facturación electrónica una sola vez en Configuración → Facturación." },
+    tip:"Configura tu proveedor de facturación electrónica una sola vez en Configuración → Facturación.",
+    anim:`<div class="scene"><span class="label">Emisión del DTE al SII</span><div class="docfly">🧾</div><div class="siibox">SII<span class="ok">✓</span></div></div>` },
 
   { icon:"💰", n:"PASO 07", t:"Cobras y controlas", mod:"Módulo: Cobranzas",
     pasa:"Gestionas el pago de tus facturas.",
@@ -302,7 +370,10 @@ const FAQ = [
 // ── Render pasos + índice ──
 const flow = document.getElementById('flow');
 const tocList = document.getElementById('tocList');
-// item 0 del índice → captación
+// índice: puesta en marcha + captación antes de los pasos
+const liSetup = document.createElement('li');
+liSetup.innerHTML = `<a href="#setup">Puesta en marcha (configuración)</a>`;
+tocList.appendChild(liSetup);
 const liCap = document.createElement('li');
 liCap.innerHTML = `<a href="#captacion">Cómo llegan las solicitudes</a>`;
 tocList.appendChild(liCap);
@@ -329,6 +400,7 @@ STEPS.forEach((s,i)=>{
         <span class="chev">⌄</span>
       </div>
       <div class="detail"><div class="inner">
+        ${s.anim||''}
         <div class="di"><span class="ico">📌</span><div class="txt"><b>Qué pasa</b><p>${s.pasa}</p></div></div>
         ${pathsHTML}
         <div class="di"><span class="ico">👉</span><div class="txt"><b>Qué haces tú</b><p>${s.haces}</p></div></div>
